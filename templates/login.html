@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Lost & Found System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 360px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .role-toggle {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .role-toggle button {
+            background-color: #eee;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .role-toggle button.active {
+            background-color: #4a69bd;
+            color: white;
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: #4a69bd;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background: #2e4a9e;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>🔐 Lost & Found Login</h2>
+
+        <!-- Role Switch -->
+        <div class="role-toggle">
+            <button type="button" id="userBtn" class="active" onclick="selectRole('user')">Student/Staff</button>
+            <button type="button" id="adminBtn" onclick="selectRole('admin')">Admin</button>
+        </div>
+
+        <form method="POST" action="/login-html">
+            <input type="text" name="username" placeholder="Username" required autocomplete="off" />
+            <input type="password" name="password" placeholder="Password" required autocomplete="off" />
+            <input type="hidden" id="roleInput" name="role" value="user" />
+            <input type="submit" value="Login" />
+            
+        </form>
+        {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+    </div>
+
+    <script>
+        function selectRole(role) {
+            document.getElementById('roleInput').value = role;
+            document.getElementById('userBtn').classList.remove('active');
+            document.getElementById('adminBtn').classList.remove('active');
+            if (role === 'user') {
+                document.getElementById('userBtn').classList.add('active');
+            } else {
+                document.getElementById('adminBtn').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!-- templates/mark_returned.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark Returned | Lost & Found</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to right, #a1ffce, #faffd1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .confirmation-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .confirmation-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .confirmation-box form button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-confirm {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #c0392b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-box">
+        <h2>✅ Mark Item as Returned?</h2>
+        <p><strong>{{ item.item_name }}</strong></p>
+        <form method="POST" action="/mark-returned/{{ item.sno }}">
+            <button type="submit" class="btn-confirm">Yes, Mark as Returned</button>
+            <a href="/items-html"><button type="button" class="btn-cancel">Cancel</button></a>
+        </form>
+    </div>
+</body>
+</html>

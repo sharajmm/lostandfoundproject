@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Lost & Found</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to right, #dce35b, #45b649);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashboard {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .dashboard h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-group a {
+            background: #4a69bd;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-group a:hover {
+            background: #1e3799;
+        }
+
+        .admin-note {
+            text-align: center;
+            color: #e55039;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 500px) {
+            .btn-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h2 style="text-align: center;">Welcome, {{ full_name }}</h2>
+        <h3 style="text-align: center; color: #666;">{{ department }}</h4>
+
+
+        <div class="btn-group">
+            <a href="/report">➕ Report Lost Item</a>
+            <a href="/items-html">📋 View All Items</a>
+        </div>
+
+        {% if role == 'admin' %}
+        <div class="admin-note">
+            👑 You are logged in as <strong>Admin</strong><br>
+            You can view, update, mark as returned, or delete any user’s item.
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

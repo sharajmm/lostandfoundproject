@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f7f7f7;
+}
+header {
+    background-color: #444;
+    padding: 10px;
+    color: white;
+}
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+form input, form select, form textarea {
+    margin: 5px 0;
+    width: 300px;
+    padding: 8px;
+}
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}

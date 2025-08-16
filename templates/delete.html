@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Item | Lost & Found</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to right, #e66465, #9198e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .confirm-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #e74c3c;
+        }
+
+        p {
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .buttons form {
+            width: 48%;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn-cancel {
+            background-color: #7f8c8d;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirm-box">
+        <h2>⚠️ Delete Item</h2>
+        <p>Are you sure you want to permanently delete <strong>{{ item.item_name }}</strong>?</p>
+        <div class="buttons">
+            <form method="POST" action="/delete/{{ item.sno }}">
+                <button type="submit" class="btn-delete">Yes, Delete</button>
+            </form>
+            <form action="/items-html">
+                <button type="submit" class="btn-cancel">Cancel</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Items | Lost & Found</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box form input,
+        .search-box form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .search-box form input[type="submit"] {
+            background: #4a69bd;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .search-box form input[type="submit"]:hover {
+            background: #1e3799;
+        }
+
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .item-card h3 {
+            margin: 0 0 10px;
+        }
+
+        .item-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h2>🔍 Search Lost Items</h2>
+
+    <div class="search-box">
+        <form method="GET" action="/search">
+            <input type="text" name="query" placeholder="Search by title or place" />
+            <input type="date" name="date_lost" />
+            <select name="category">
+                <option value="">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Books">Books</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Documents">Documents</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    {% if results %}
+    <div class="item-grid">
+        {% for item in results %}
+        <div class="item-card">
+            <h3>{{ item.title }}</h3>
+            <p><strong>Place:</strong> {{ item.place_lost }}</p>
+            <p><strong>Date:</strong> {{ item.date_lost }}</p>
+            <p><strong>Category:</strong> {{ item.category }}</p>
+            <p><strong>Description:</strong> {{ item.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% elif results is not none %}
+    <p style="text-align:center; color:red;">No matching items found.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Lost Item | Lost & Found</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        form input[type="submit"] {
+            background: #e17055;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background: #d63031;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>📌 Report Lost Item</h2>
+        <form method="POST" action="/report">
+            <input type="text" name="item_name" placeholder="Item Name" required>
+            <textarea name="description" placeholder="Item Description" rows="4" required></textarea>
+            <input type="text" name="location" placeholder="Lost Location" required>
+            <input type="date" name="date_reported" required>
+            <select name="status" required>
+                <option value="" disabled selected>Select Status</option>
+                <option value="Lost">Lost</option>
+                <option value="Found">Found</option>
+            </select>
+            <input type="submit" value="Submit Report">
+        </form>
+    </div>
+</body>
+</html>

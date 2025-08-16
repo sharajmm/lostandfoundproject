@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Item | Lost & Found</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        form input[type="submit"] {
+            background: #6c5ce7;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background: #341f97;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>✏️ Update Item</h2>
+        <form method="POST" action="/update/{{ item.sno }}">
+            <input type="text" name="item_name" value="{{ item.item_name }}" required>
+            <textarea name="description" rows="4" required>{{ item.description }}</textarea>
+            <input type="text" name="location" value="{{ item.location }}" required>
+            <input type="date" name="date_reported" value="{{ item.date_reported }}" required>
+            <select name="status" required>
+                <option value="Lost" {% if item.status == 'Lost' %}selected{% endif %}>Lost</option>
+                <option value="Found" {% if item.status == 'Found' %}selected{% endif %}>Found</option>
+                <option value="Returned" {% if item.status == 'Returned' %}selected{% endif %}>Returned</option>
+            </select>
+            <input type="submit" value="Update Item">
+        </form>
+    </div>
+</body>
+</html>
