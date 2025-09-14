@@ -4,11 +4,11 @@ from mysql.connector import Error
 def get_connection():
     try:
         connection = mysql.connector.connect(
-    host="shinkansen.proxy.rlwy.net",
+    host="nozomi.proxy.rlwy.net",
     user="root",
-    password="zrZXqNinWJhpKVgJCsvCZpPDZzjmUYrh",
+    password="ywmbuzUuphBSddsLtVqMksebsGEpQSRi",
     database="railway",
-    port=20241
+    port=49885
 )
         return connection
     except Error as e:
